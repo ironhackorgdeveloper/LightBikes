@@ -1,0 +1,57 @@
+body {
+  overflow: hidden;
+
+  animation: colorchange 120s linear infinite;
+
+    animation: colorchange 120s; /* animation-name followed by duration in seconds*/
+       /* you could also use milliseconds (ms) or something like 2.5s */
+    -webkit-animation: colorchange 120s; /* Chrome and Safari */
+    
+  }
+
+
+@keyframes colorchange
+{
+  0%,100% {background: #1abc9c }
+  5% {background: #2ecc71 }
+  10% {background: #3498db }
+  15% {background: #9b59b6 }
+  20% {background: #34495e }
+  25% {background: #16a085 }
+  30% {background: #27ae60 }
+  35% {background: #2980b9 }
+  40% {background: #8e44ad }
+  45% {background: #2c3e50 }
+  50% {background: #f1c40f }
+  55% {background: #e67e22 }
+  60% {background: #e74c3c }
+  70% {background: #95a5a6 }
+  75% {background: #f39c12 }
+  80% {background: #d35400 }
+  85% {background: #c0392b }
+  90% {background: #bdc3c7 }
+  95% {background: #7f8c8d }
+}
+
+@-webkit-keyframes colorchange /* Safari and Chrome - necessary duplicate */
+{
+  0%,100% {background: #1abc9c }
+  5% {background: #2ecc71 }
+  10% {background: #3498db }
+  15% {background: #9b59b6 }
+  20% {background: #34495e }
+  25% {background: #16a085 }
+  30% {background: #27ae60 }
+  35% {background: #2980b9 }
+  40% {background: #8e44ad }
+  45% {background: #2c3e50 }
+  50% {background: #f1c40f }
+  55% {background: #e67e22 }
+  60% {background: #e74c3c }
+  70% {background: #95a5a6 }
+  75% {background: #f39c12 }
+  80% {background: #d35400 }
+  85% {background: #c0392b }
+  90% {background: #bdc3c7 }
+  95% {background: #7f8c8d }
+} 

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Project 1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"/>  
+  <link rel="stylesheet" type="text/css" media="screen" href="./css/styles.css" />
+</head>
+<body>
+
+    <!-- score-container -->
+
+    <div class="container score-container">
+      <div class="row" align="center">
+        <div class="col-3">
+          <p id="p1">Player 1:</p><span id="player-1-score">0</span>
+        </div>
+        <div class="col-6">
+          <p id="timer">The game will start in <span id="timer-seconds">5</span>.</p>
+        </div>
+        <div class="col-3">
+          <p id="p2">Player 2:</p><span id="player-2-score">0</span>
+        </div>
+      </div>
+    </div>
+  
+  <canvas id="canvas" width="950" height="650"></canvas>
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script> 
+  <script src="./js/game.js"></script>
+  <script src="./js/lightbikes.js"></script>
+</body>
+</html>
