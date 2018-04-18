@@ -4,9 +4,6 @@ window.onload = function () { // Fired when the entire page loads, including its
 
     // Add players to the canvas. 
 
-
-
-
     // Start the 5 second countdown.
     // countDown = function(){
     //   var seconds = document.getElementById('timer-seconds')
@@ -39,6 +36,4 @@ window.onload = function () { // Fired when the entire page loads, including its
   function endGame() { // Resets the game & says who scored a point.
 
   };
-
-
-};
+}; // END window.onload function
