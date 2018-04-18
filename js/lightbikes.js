@@ -1,4 +1,6 @@
-window.onload = function () { // Fired when the entire page loads, including its content.
+// Countdown and then have it execute the draw functions.
+
+window.onload = function () { 
 
   // var currentGame;
   // var canStart = true;
@@ -6,81 +8,107 @@ window.onload = function () { // Fired when the entire page loads, including its
   var ctx = canvas.getContext('2d');
 
   // Constructor function for LightBikes
-  function LightBike(bikeX, bikeY, bikeWidth, bikeHeight) {
+  const LightBike = function(bikeX, bikeY, bikeWidth, bikeHeight) {
     this.x = bikeX;
     this.y = bikeY;
     this.width = bikeWidth;
     this.height = bikeHeight;
   }
-
-  function Player(playerColor, bikeX, bikeY, bikeWidth, bikeHeight) {
-    LightBike.call(this, bikeX, bikeY, bikeWidth, bikeHeight);
-    this.color = playerColor;
-    
-    // moveUp: function(){ this.x -= 5; },
-  
-    // moveDown: function(){ this.y -= 5; },
-  
-    // moveLeft: function(){ this.x += 5; },
-  
-    // moveRight: function(){ this.y += 5; },
-  // }
-  }
-  
-      // Player.prototype.moveUp = function(){
-      //   this.x -= 5;
-      // }
-    
-      // Player.prototype.moveDown = function(){
-      //   this.y -= 5;
-      // }
-    
-      // Player.prototype.moveLeft = function(){
-      //   this.x += 5;
-      // }
-    
-      // Player.prototype.moveRight = function(){
-      //   this.y += 5;
-      // }
-  
-  // playerOne() prototype.
-  Player.prototype = Object.create(LightBike.prototype);
-  Player.prototype.constructor = Player;
-
-  Player.prototype.draw = function(){
-    ctx.fillStyle = this.color;
-    ctx.fillRect(this.x, this.y, this.width, this.height);
-  }
-
  
-  var playerOne = new Player("red", 400, 300, 15, 15);
-  var playerTwo = new Player("blue", 475, 300, 15, 15);
+  // Constructor function for Players
+  const Player = function(playerColor, bike) {
+    this.color = playerColor;
+    this.bike = bike;
+    this.moveUp =   function() { this.bike.y -= 15; this.draw() },
+    this.moveDown = function() { this.bike.y += 15; this.draw() },
+    this.moveLeft = function() { this.bike.x -= 15; this.draw() },
+    this.moveRight =function() { this.bike.x += 15; this.draw() },
+    this.draw = function(){
+      ctx.fillStyle = this.color;
+      ctx.fillRect(this.bike.x, this.bike.y, this.bike.width, this.bike.height);
+    }
+    this.clear = function() {
+      ctx.clearRect(this.bike.x, this.bike.y, this.bike.width, this.bike.height)
+    }
+  }
 
-  console.log(playerOne);
+  const playerOne = new Player('blue', new LightBike(400, 300, 15, 15))
+  const playerTwo = new Player('red', new LightBike(475, 300, 15, 15))
 
   playerOne.draw();
-  playerTwo.draw();  
+  playerTwo.draw(); 
+    
+  // console.log(playerOne);
+  // console.log(playerTwo);
 
-  // KeyCodes for playerOne (WASD)
-  playerOneKeys = {
-    north: 87, // W
-    south: 83, // S
-    east: 68, // D 
-    west: 65  // A
-  };
 
-  // KeyCodes for playerTwo (IJKL)
-  playerTwoKeys = {
-    north: 73, // I
-    south: 75, // K
-    east: 76, // L
-    west: 74  // J
-  };
+  // // playerOne() prototype.
+  // Player.prototype = Object.create(LightBike.prototype);
+  // Player.prototype.constructor = Player;
 
-  document.onkeydown = function (e) {
-    console.log(e);
+  // Player.prototype.draw = function(){
+  //   ctx.fillStyle = this.color;
+  //   ctx.fillRect(this.x, this.y, this.width, this.height);
+  // }
+ 
+  // var playerOne = new Player("red", 400, 300, 15, 15);
+  // var playerTwo = new Player("blue", 475, 300, 15, 15);
+
+  // var playerOne = { 
+  //   x: 400,
+  //   y: 300,
+  //   width: 15,
+  //   height: 15,
+  //   moveUp:    function() { this.y -= 25 },
+  //   moveDown:  function() { this.y += 25 },
+  //   moveLeft:  function() { this.x -= 25 },
+  //   moveRight: function() { this.x += 25 },
+  //   draw: function(){
+  //     ctx.fillStyle = this.color;
+  //     ctx.fillRect(this.x, this.y, this.width, this.height);
+  //   }
+  // }
+
+  
+  // var playerTwo = {
+    
+  //   x: 475,
+  //   y: 300,
+  //   width: 15,
+  //   height: 15,
+  //   moveUp:    function() { this.y -= 25 },
+  //   moveDown:  function() { this.y += 25 },
+  //   moveLeft:  function() { this.x -= 25 },
+  //   moveRight: function() { this.x += 25 },
+  //   draw: function(){
+  //     ctx.fillStyle = this.color;
+  //     ctx.fillRect(this.x, this.y, this.width, this.height);
+  //   }
+  // }
+
+ 
+
+  // // KeyCodes for playerOne (WASD)  NOT NEEDED?
+  // playerOneKeys = {
+  //   north: 87, // W
+  //   south: 83, // S
+  //   east: 68, // D 
+  //   west: 65  // A
+  // };
+
+  // // KeyCodes for playerTwo (IJKL) NOT NEEDED?
+  // playerTwoKeys = {
+  //   north: 73, // I
+  //   south: 75, // K
+  //   east: 76, // L
+  //   west: 74  // J
+  // };
+
+  document.onkeydown = function (e) { // The switch will break after one input is accepted. Need to turn this into IF statements? 
+    console.log('switch', e.key) 
     switch (e.keyCode) {
-      // Switch statement cases for Key Event Input - (Player 1: WASD)
+      // Switch statement
+        //cases for Key Event Input - (Player 1: WASD)
       case 87:
         playerOne.moveUp();
         break;
@@ -166,6 +194,5 @@ window.onload = function () { // Fired when the entire page loads, including its
   //         // console.log("Oops!");
   //     } 
   //   }
+
 };
-
-
