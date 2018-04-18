@@ -2,17 +2,27 @@ window.onload = function () { // Fired when the entire page loads, including its
 
   function setup() { // Sets up the game.
 
-    // Add players to the canvas. 
-
-    // Start the 5 second countdown.
-    // countDown = function(){
-    //   var seconds = document.getElementById('timer-seconds')
-    //   if(seconds <= 5 && seconds > 0){
-    //     seconds--;
-    //     $("#timer-seconds").html(seconds);
-    //   }
-    // }
-    // countDown();
+    function countdown(){
+      var fiveSeconds = $('.col-6 span').html();
+      console.log(fiveSeconds);
+      $('.timer-seconds').text(fiveSeconds);
+      setInterval(function(){
+        fiveSeconds--;
+        if(fiveSeconds >= 0){
+          $('.timer').text(fiveSeconds);
+        }
+        if(fiveSeconds == 0){
+        }
+      },1000);
+    }
+    // Start
+    countdown();
+    
+    
+    // Loop
+    setInterval(function(){
+      countdown();
+    },5000);
 
 
     // Begin tracking the time of the game.

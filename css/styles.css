@@ -1,60 +1,3 @@
-body {
-  overflow: hidden;
-
-  animation: colorchange 120s linear infinite;
-
-    animation: colorchange 120s; /* animation-name followed by duration in seconds*/
-       /* you could also use milliseconds (ms) or something like 2.5s */
-    -webkit-animation: colorchange 120s; /* Chrome and Safari */
-    
-  }
-
-
-@keyframes colorchange
-{
-  0%,100% {background: #1abc9c }
-  5% {background: #2ecc71 }
-  10% {background: #7fbae2 }
-  15% {background: #df78d6 }
-  20% {background: #34495e }
-  25% {background: #71dbc6 }
-  30% {background: #27ae60 }
-  35% {background: #5eb1e9 }
-  40% {background: #bd70df }
-  45% {background: #2c3e50 }
-  50% {background: #f1c40f }
-  55% {background: #e67e22 }
-  60% {background: #e7b13c }
-  70% {background: #95a5a6 }
-  75% {background: #f39c12 }
-  80% {background: #d35400 }
-  85% {background: #ca5043 }
-  90% {background: #bdc3c7 }
-  95% {background: #7f8c8d }
-}
-
-@-webkit-keyframes colorchange /* Safari and Chrome - necessary duplicate */
-{
-  0%,100% {background: #1abc9c }
-  5% {background: #2ecc71 }
-  10% {background: #7fbae2 }
-  15% {background: #df78d6 }
-  20% {background: #34495e }
-  25% {background: #71dbc6 }
-  30% {background: #27ae60 }
-  35% {background: #5eb1e9 }
-  40% {background: #bd70df }
-  45% {background: #2c3e50 }
-  50% {background: #f1c40f }
-  55% {background: #e67e22 }
-  60% {background: #e7b13c }
-  70% {background: #95a5a6 }
-  75% {background: #f39c12 }
-  80% {background: #d35400 }
-  85% {background: #ca5043 }
-  90% {background: #bdc3c7 }
-  95% {background: #7f8c8d }
-} 
 
 /* @font-face {
   font-family: Tr2n;
@@ -81,6 +24,56 @@ a:link{
   width: 330px;
   z-index: 1;
 }
+
+/* .loading {
+  animation: clockwise 1.5s linear infinite;
+  display: block;
+  height: 2em;
+  position: relative;
+  width: 2em;
+}
+
+.loading,
+.loading:before,
+.loading:after {
+  border: .2em solid transparent;
+  border-radius: 50%;
+  border-top-color: rgba(25,255,255,0.6);
+  margin: auto;
+}
+
+.loading:before,
+.loading:after {
+  content: '';
+  position: absolute;
+}
+
+.loading:before {
+  animation: anticlockwise .9s linear infinite;
+  top: -.6em;
+  right: -.6em;
+  bottom: -.6em;
+  left: -.6em;
+}
+
+.loading:after {
+  animation: anticlockwise .66s linear infinite;
+  top: .3em;
+  right: .3em;
+  bottom: .3em;
+  left: .3em;
+}
+
+@keyframes clockwise {
+  0%  { transform: rotate(0deg) }
+  100%{ transform: rotate(360deg) }
+}
+
+@keyframes anticlockwise {
+  0%  { transform: rotate(360deg) }
+  100%{ transform: rotate(0deg) }
+} */
+
 
 /* #ironhack-logo{
   height: 125px;
@@ -131,7 +124,7 @@ a:link{
 #timer{margin-top: 15px;font-weight: 800;}
 
 #timer-seconds{
-
+  margin-left: 5px;
 }
 
 #player-1-score{
