@@ -6,11 +6,11 @@ body {
 
   overflow: hidden;
 
-  animation: colorchange 120s linear infinite;
+  animation: colorchange 300s linear infinite;
 
-    animation: colorchange 120s; /* animation-name followed by duration in seconds*/
+    animation: colorchange 300s; /* animation-name followed by duration in seconds*/
        /* you could also use milliseconds (ms) or something like 2.5s */
-    -webkit-animation: colorchange 120s; /* Chrome and Safari */
+    -webkit-animation: colorchange 300s; /* Chrome and Safari */
     
   }
 
