@@ -14,21 +14,21 @@ body {
 {
   0%,100% {background: #1abc9c }
   5% {background: #2ecc71 }
-  10% {background: #3498db }
-  15% {background: #9b59b6 }
+  10% {background: #7fbae2 }
+  15% {background: #df78d6 }
   20% {background: #34495e }
-  25% {background: #16a085 }
+  25% {background: #71dbc6 }
   30% {background: #27ae60 }
-  35% {background: #2980b9 }
-  40% {background: #8e44ad }
+  35% {background: #5eb1e9 }
+  40% {background: #bd70df }
   45% {background: #2c3e50 }
   50% {background: #f1c40f }
   55% {background: #e67e22 }
-  60% {background: #e74c3c }
+  60% {background: #e7b13c }
   70% {background: #95a5a6 }
   75% {background: #f39c12 }
   80% {background: #d35400 }
-  85% {background: #c0392b }
+  85% {background: #ca5043 }
   90% {background: #bdc3c7 }
   95% {background: #7f8c8d }
 }
@@ -37,21 +37,21 @@ body {
 {
   0%,100% {background: #1abc9c }
   5% {background: #2ecc71 }
-  10% {background: #3498db }
-  15% {background: #9b59b6 }
+  10% {background: #7fbae2 }
+  15% {background: #df78d6 }
   20% {background: #34495e }
-  25% {background: #16a085 }
+  25% {background: #71dbc6 }
   30% {background: #27ae60 }
-  35% {background: #2980b9 }
-  40% {background: #8e44ad }
+  35% {background: #5eb1e9 }
+  40% {background: #bd70df }
   45% {background: #2c3e50 }
   50% {background: #f1c40f }
   55% {background: #e67e22 }
-  60% {background: #e74c3c }
+  60% {background: #e7b13c }
   70% {background: #95a5a6 }
   75% {background: #f39c12 }
   80% {background: #d35400 }
-  85% {background: #c0392b }
+  85% {background: #ca5043 }
   90% {background: #bdc3c7 }
   95% {background: #7f8c8d }
 } 
