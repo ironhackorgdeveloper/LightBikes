@@ -7,6 +7,9 @@ window.onload = function () {
   var canvas = document.getElementById('canvas');
   var ctx = canvas.getContext('2d');
   
+  // canvasWidth = 950; 
+  // canvasHeight = 650;
+
   // Constructor function for the LightBikes.
   var LightBike = function(bikeX, bikeY, bikeWidth, bikeHeight) {
     this.x = bikeX;
@@ -14,16 +17,68 @@ window.onload = function () {
     this.width = bikeWidth;
     this.height = bikeHeight;
   };
- 
+
   // Constructor function for each of the two players.
-  var Player = function(playerColor, bike) {
+  var Player = function(playerColor, bike){
     this.color = playerColor;
     this.bike = bike;
-    this.moveUp   = function() { this.bike.y -= 15; this.draw(); }; // Accepts movementUp from the switch statements and then re-draws the player object.
-    this.moveDown = function() { this.bike.y += 15; this.draw(); }; // Accepts movementDown from the switch statements and then re-draws the player object.
-    this.moveRight= function() { this.bike.x -= 15; this.draw(); }; // Accepts movementRight from the switch statements and then re-draws the player object.
-    this.moveLeft = function() { this.bike.x += 15; this.draw(); }; // Accepts movementLeft from the switch statements and then re-draws the player object.
-    this.draw     = function(){
+    this.moveUp   = function(){
+      if((this.bike.y > -1 && this.bike.x > -1) && (this.bike.y < 650 && this.bike.x < 950)){
+        console.log(this.bike.y, this.bike.x);
+        this.bike.y -= 15;
+        this.draw(); 
+      }
+      else{
+        window.clearInterval(playerOneMove); // Clear the interval when a crash occurs. 
+        window.clearInterval(playerTwoMove); // Clear the interval when a crash occurs. 
+        this.clear();
+        trackPlayerScore();
+        gameOver();
+      }
+    }; 
+    this.moveDown = function(){
+      if((this.bike.y > -1 && this.bike.x > -1) && (this.bike.y < 650 && this.bike.x < 950)){
+        console.log(this.bike.y, this.bike.x);
+        this.bike.y += 15;
+        this.draw(); 
+      }
+      else{
+        window.clearInterval(playerOneMove); // Clear the interval when a crash occurs. 
+        window.clearInterval(playerTwoMove); // Clear the interval when a crash occurs. 
+        this.clear();
+        trackPlayerScore();
+        gameOver();      
+      }
+    }; 
+    this.moveRight= function(){
+      if((this.bike.y > -1 && this.bike.x > -1) && (this.bike.y < 650 && this.bike.x < 950)){
+        console.log(this.bike.y, this.bike.x);
+        this.bike.x -= 15;
+        this.draw(); 
+      }
+      else{
+        window.clearInterval(playerOneMove); // Clear the interval when a crash occurs. 
+        window.clearInterval(playerTwoMove); // Clear the interval when a crash occurs. 
+        this.clear();
+        trackPlayerScore();
+        gameOver();
+      }
+    };
+    this.moveLeft = function(){
+      if((this.bike.y > -1 && this.bike.x > -1) && (this.bike.y < 650 && this.bike.x < 950)){
+        console.log(this.bike.y, this.bike.x);
+        this.bike.x += 15;
+        this.draw(); 
+      }
+      else{
+        window.clearInterval(playerOneMove); // Clear the interval when a crash occurs. 
+        window.clearInterval(playerTwoMove); // Clear the interval when a crash occurs. 
+        this.clear();
+        trackPlayerScore();
+        gameOver();
+      }
+    }; // Accepts movementLeft from the switch statements and then re-draws the player object.
+    this.draw = function(){
       ctx.fillStyle = this.color;
       ctx.fillRect(this.bike.x, this.bike.y, this.bike.width, this.bike.height);
     };
@@ -60,19 +115,12 @@ window.onload = function () {
     playerTwo.draw();
   };
 
-//   function limits(x,y, id){
-//     if(x <= 0 || y <= 0 || x >= 950 || y >= 650){ // max width and height of the canvas
-//         clearInterval(id);
-//         return false;
-//     }else {return true;}
-// }
-
   // Accepts key presses from the DOM and associates them with player movement.
   document.onkeydown = function (e) {
     switch (e.keyCode) {
       // Key Event Input - (Player 1: WASD)
       case 87:
-        window.clearInterval(playerOneMove);
+        window.clearInterval(playerOneMove); // For when direction is changed.
         playerOneMove = setInterval(function() {
         playerOne.moveUp();
         },50);
@@ -124,6 +172,31 @@ window.onload = function () {
         console.log("You're moving!");
     }
   };
+
+//   var canvasWalls = [];
+
+
+//   function checkCollision(){
+//     if(playerOne.bikeX.x > canvasWidth) ||
+//       (playerOne.bikeX.x > canvasHeight) ||
+//       (playerOne.bikeY.y > canvasWidth) ||
+//       (playerOne.bikeY.y > canvasHeight) ||
+//       (playerTwo.bikeX.x > canvasWidth) ||
+//       (playerTwo.bikeX.x > canvasHeight) ||
+//       (playerTwo.bikeY.y > canvasWidth) ||
+//       (playerTwo.bikeY.y > canvasHeight){
+//         return false;
+//       };
+// };
+
+  function gameOver(){
+    // alert("gameOver!")
+    console.log("GameOver");
+    // setTimeout(function(){
+    //   window.location.href = "game.html";
+    // }, 1);    
+  }
+
 
   function trackPlayerScore(){
     playerOneScore = $('#player-1-score').text();
