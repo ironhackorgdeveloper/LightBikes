@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Orbitron');
 
 body {
-  
+
   font-family: 'Orbitron', sans-serif;
 
   overflow: hidden;
@@ -11,10 +11,233 @@ body {
     animation: colorchange 300s; /* animation-name followed by duration in seconds*/
        /* you could also use milliseconds (ms) or something like 2.5s */
     -webkit-animation: colorchange 300s; /* Chrome and Safari */
-    
+
+  }
+/* ============================== Ian ========== */
+
+.flex-container {
+  display: flex;
+}
+.buttons {
+  flex-direction: column;
+  z-index: 1;
+}
+.center-this-please {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    height: 100px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 330px;
+    padding-top: 150px;
+}
+
+
+/* =============================== GLOW =========== */
+
+.neon:active {
+    top:1px;
+    position: relative;
+}
+
+.neon:hover {
+  text-decoration: none;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+
+.neon:hover {
+  -webkit-animation: neon1 1.5s ease-in-out infinite alternate;
+  -moz-animation: neon1 1.5s ease-in-out infinite alternate;
+  animation: neon1 1.5s ease-in-out infinite alternate;
+}
+.first-button-wrap {
+
+}
+
+.second-button-wrap {
+  padding-top: 5px;
+}
+/* ============================ */
+.better-button {
+    letter-spacing: 2px;
+    padding: 9px !important;
+    color: #fff !important;
+    border: 0px solid #0c75d7;
+    background: #22AFCA;
+    transition: box-shadow 0.3s ease-in-out;
+    transition: background 0.2s ease;
+}
+.better-button:hover {
+background: rgba(17, 122, 139, 0.8);
+transition: box-shadow 0.03s ease-in-out;
+box-shadow: 0 0 12px 0px #0c75d7;
+border: 1px solid #22AFCA;
+}
+
+.btn-success:not(:disabled):not(.disabled):active {
+        background-color : rgba(17, 122, 139, 1) !important;
+        border-color: #10707f !important;
+}
+/* ============================ */
+.neon:hover {
+  text-decoration: none;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.neon:hover {
+  -webkit-animation: neon1 1.5s ease-in-out infinite alternate;
+  -moz-animation: neon1 1.5s ease-in-out infinite alternate;
+  animation: neon1 1.5s ease-in-out infinite alternate;
+}
+/* ======================================== */
+#p1,
+#player-1-score {
+  margin-top: 15px;
+  font-weight: 800;
+  display: inline-block;
+  font-size: 20px;
+}
+
+#p1,
+#player-1-score {
+  text-decoration: none;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+#p1,
+#player-1-score {
+  -webkit-animation: playerscore1 1.5s ease-in-out infinite alternate;
+  -moz-animation: playerscore1 1.5s ease-in-out infinite alternate;
+  animation: playerscore1 1.5s ease-in-out infinite alternate;
+}
+
+#p2,
+#player-2-score {
+  margin-top: 15px;
+  font-weight: 800;
+  display: inline-block;
+  font-size: 20px;
+}
+
+#p2,
+#player-2-score {
+  text-decoration: none;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+#p2,
+#player-2-score {
+  -webkit-animation: neon1 1.5s ease-in-out infinite alternate;
+  -moz-animation: neon1 1.5s ease-in-out infinite alternate;
+  animation: neon1 1.5s ease-in-out infinite alternate;
+}
+/* ======================================== */
+#player-1-score {
+  color: red;
+  font-weight: 800;
+  margin-left: 10px;
+}
+
+#player-2-score {
+  margin-left: 10px;
+  color: blue;
+  font-weight: 800;
+}
+/* ==================================== */
+#timer {
+    margin-top: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    font-size: 23px;
+}
+
+#timer-seconds {
+  margin-left: 5px;
+}
+
+/* ======================== HOME SCREEN BUTTONS ===== */
+/*glow for webkit*/
+@-webkit-keyframes neon1 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
+  }
+
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
+  }
+
+  }
+/*glow for mozilla*/
+
+@-moz-keyframes neon1 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
+  }
+
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
+  }
+
+  }
+/* glow */
+@keyframes neon1 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
+  }
+
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
+  }
+
   }
 
 
+/* ==================================== */
+
+
+/* ======================== SCORE GAME BUTTONS ===== */
+/*glow for webkit*/
+@-webkit-keyframes playerscore1 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
+  }
+}
+/*glow for mozilla*/
+
+@-moz-keyframes playerscore1 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
+  }
+}
+/*glow*/
+
+@keyframes playerscore1 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
+  }
+}
+
+/* ======================================= */
 @keyframes colorchange
 {
   0%,100% {background: #1abc9c }
@@ -59,7 +282,7 @@ body {
   85% {background: #ca5043 }
   90% {background: #bdc3c7 }
   95% {background: #7f8c8d }
-} 
+}
 
 
 /* @font-face {
@@ -68,7 +291,7 @@ body {
 } */
 
 a{
-  color: white; 
+  color: white;
   display: inline-block;
 }
 
@@ -80,13 +303,7 @@ a:link{
   text-decoration: none;
 }
 
-.buttons{
-  display: block;
-  margin-top: 540px;
-  margin-left: 190px;
-  width: 330px;
-  z-index: 1;
-}
+
 
 /* .loading {
   animation: clockwise 1.5s linear infinite;
@@ -145,7 +362,7 @@ a:link{
 } */
 
 .flex{
-  display: flex; 
+  display: flex;
   justify-content: space-around;
 }
 
@@ -156,7 +373,7 @@ a:link{
   padding: 5px;
   width: 330px;
   margin-bottom: 5px;
-  
+
 }
 
 #how-to-button{
@@ -170,37 +387,9 @@ a:link{
     margin-top: 83px;
 }
 
-#p1{
-  color: red;
-  margin-top: 15px;
-  font-weight: 800;
-  display: inline-block;
-}
 
-#p2{
-  color: blue;
-  margin-top: 15px;
-  font-weight: 800;
-  display: inline-block;
-}
 
-#timer{margin-top: 15px;font-weight: 800;}
 
-#timer-seconds{
-  margin-left: 5px;
-}
-
-#player-1-score{
-  color: red;
-  font-weight: 800;
-  margin-left: 10px;
-}
-
-#player-2-score{
-  margin-left: 10px;
-  color: blue;
-  font-weight: 800;
-}
 
 #canvas{
   border: solid 3px black;
@@ -214,4 +403,3 @@ a:link{
   right: 0;
   z-index: 0;
 }
-
