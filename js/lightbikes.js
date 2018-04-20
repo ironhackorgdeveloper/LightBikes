@@ -294,70 +294,177 @@ window.onload = function () {
     }
   };
 
-    function collisionCheck() {
-      console.log(travelLog);
-    travelLog.forEach(function (eachCoordinate){
-      if(playerOne.bike.x === eachCoordinate.x && playerOne.bike.y === eachCoordinate.y ||
-         playerTwo.bike.x === eachCoordinate.x && playerTwo.bike.y === eachCoordinate.y){
-        setTimeout(function() {
+//     function collisionCheck() {
+//       console.log(travelLog);
+//     travelLog.forEach(function (eachCoordinate){
+//       if(playerOne.bike.x === eachCoordinate.x && playerOne.bike.y === eachCoordinate.y ||
+//          playerTwo.bike.x === eachCoordinate.x && playerTwo.bike.y === eachCoordinate.y){
+//         setTimeout(function() {
 
-          alert("COLLIDED!")
-        }, 1);
+//           alert("COLLIDED!")
+//         }, 1);
 
-        window.location.reload();
-      }
-    });
-  };
+//         window.location.reload();
+//       }
+//     });
+//   };
 
-  function trackPlayerScore(){
-    playerOneScore = $('#player-1-score').text();
-    playerTwoScore = $('#player-2-score').text();
+//   function trackPlayerScore(){
+//     playerOneScore = $('#player-1-score').text();
+//     playerTwoScore = $('#player-2-score').text();
 
-    playerOneScore = parseInt(playerOneScore,10);
-    playerTwoScore = parseInt(playerTwoScore,10);
-  }
+//     playerOneScore = parseInt(playerOneScore,10);
+//     playerTwoScore = parseInt(playerTwoScore,10);
+//   }
 
-  function gameOver(){
-    countdown();
-  }
+//   function gameOver(){
+//     countdown();
+//   }
 
-  function checkIfPlayerOneWins(){ // Should be combined into one CHECK IF PLAYER WON FUNCTION
-    if(playerOneScore === 3){
-      alert("Player One Wins!");
-      playerTwoScore = 0;
-      playerOneScore = 0; 
-      $('#player-1-score').text(playerOneScore);
-      $('#player-2-score').text(playerTwoScore);
-      gameOver();
-    }
-  }
+//   function checkIfPlayerOneWins(){ // Should be combined into one CHECK IF PLAYER WON FUNCTION
+//     if(playerOneScore === 3){
+//       alert("Player One Wins!");
+//       playerTwoScore = 0;
+//       playerOneScore = 0; 
+//       $('#player-1-score').text(playerOneScore);
+//       $('#player-2-score').text(playerTwoScore);
+//       gameOver();
+//     }
+//   }
 
-  function checkIfPlayerTwoWins(){ // Should be combined into one CHECK IF PLAYER WON FUNCTION
-    if(playerTwoScore === 3){
-      alert("Player Two Wins!");
-      playerTwoScore = 0;
-      playerOneScore = 0; 
-      $('#player-1-score').text(playerOneScore);
-      $('#player-2-score').text(playerTwoScore);     
-    }
-  }
+//   function checkIfPlayerTwoWins(){ // Should be combined into one CHECK IF PLAYER WON FUNCTION
+//     if(playerTwoScore === 3){
+//       alert("Player Two Wins!");
+//       playerTwoScore = 0;
+//       playerOneScore = 0; 
+//       $('#player-1-score').text(playerOneScore);
+//       $('#player-2-score').text(playerTwoScore);     
+//     }
+//   }
   
-  function selfCrashP1(){ // Should be combined into one SELF CRASH FUNCTION
-    alert("Player 1 crashed into itslef!")
-    playerTwoScore++;
-    $('#player-2-score').text(playerTwoScore);
-    checkIfPlayerOneWins();    
-    checkIfPlayerTwoWins();    
-  }
+//   function selfCrashP1(){ // Should be combined into one SELF CRASH FUNCTION
+//     alert("Player 1 crashed into itslef!")
+//     playerTwoScore++;
+//     $('#player-2-score').text(playerTwoScore);
+//     checkIfPlayerOneWins();    
+//     checkIfPlayerTwoWins();    
+//   }
 
-  function selfCrashP2(){ // Should be combined into one SELF CRASH FUNCTION
-    alert("Player 2 crashed into itslef!")
-    playerOneScore++;
-    $('#player-1-score').text(playerOneScore);
-    checkIfPlayerOneWins();    
-    checkIfPlayerTwoWins();    
+//   function selfCrashP2(){ // Should be combined into one SELF CRASH FUNCTION
+//     alert("Player 2 crashed into itslef!")
+//     playerOneScore++;
+//     $('#player-1-score').text(playerOneScore);
+//     checkIfPlayerOneWins();    
+//     checkIfPlayerTwoWins();    
+//   }
+
+function collisionCheck() {
+  console.log(travelLog);
+travelLog.forEach(function (eachCoordinate){
+  if(playerOne.bike.x === eachCoordinate.x && playerOne.bike.y === eachCoordinate.y) {
+    setTimeout(function() {
+      alert("Player One COLLIDED!");
+    }, 1);
+    setTimeout(function() {
+      playerTwoScore++;
+      $('#player-2-score').text(playerOneScore);
+      window.clearInterval(playerOneMove);
+      window.clearInterval(playerTwoMove);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawPlayersOnBoard();
+      checkIfPlayerOneWins();
+      checkIfPlayerTwoWins();
+
+    }, 2);
+
+    window.location.reload();
   }
+  if(playerTwo.bike.x === eachCoordinate.x && playerTwo.bike.y === eachCoordinate.y) {
+    setTimeout(function() {
+      alert("Player Two COLLIDED!");
+    }, 1);
+    setTimeout(function() {
+      playerOneScore++;
+      $('#player-1-score').text(playerOneScore);
+      window.clearInterval(playerOneMove);
+      window.clearInterval(playerTwoMove);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawPlayersOnBoard();
+      checkIfPlayerOneWins();
+      checkIfPlayerTwoWins();
+
+    }, 2);
+
+    window.location.reload();
+  }
+});
+}
+
+function trackPlayerScore(){
+playerOneScore = $('#player-1-score').text();
+playerTwoScore = $('#player-2-score').text();
+
+playerOneScore = parseInt(playerOneScore,10);
+playerTwoScore = parseInt(playerTwoScore,10);
+}
+
+function gameOver(){
+countdown();
+}
+
+function checkIfPlayerOneWins(){ // Should be combined into one CHECK IF PLAYER WON FUNCTION
+if(playerOneScore === 3){
+  alert("Player One Wins!");
+  playerTwoScore = 0;
+  playerOneScore = 0;
+  $('#player-1-score').text(playerOneScore);
+  $('#player-2-score').text(playerTwoScore);
+  setTimeout(function() {
+    window.location.reload();
+  }, 1);
+  gameOver();
+}
+}
+
+function checkIfPlayerTwoWins(){ // Should be combined into one CHECK IF PLAYER WON FUNCTION
+if(playerTwoScore === 3){
+  alert("Player Two Wins!");
+  playerTwoScore = 0;
+  playerOneScore = 0;
+  $('#player-1-score').text(playerOneScore);
+  $('#player-2-score').text(playerTwoScore);
+  setTimeout(function() {
+    window.location.reload();
+  }, 1);
+}
+}
+
+function selfCrashP1(){ // Should be combined into one SELF CRASH FUNCTION
+alert("Player 1 crashed into itslef!");
+playerTwoScore++;
+$('#player-2-score').text(playerTwoScore);
+window.clearInterval(playerOneMove);
+window.clearInterval(playerTwoMove);
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+drawPlayersOnBoard();
+checkIfPlayerOneWins();
+checkIfPlayerTwoWins();
+}
+
+function selfCrashP2(){ // Should be combined into one SELF CRASH FUNCTION
+alert("Player 2 crashed into itslef!");
+playerOneScore++;
+$('#player-1-score').text(playerOneScore);
+window.clearInterval(playerOneMove);
+window.clearInterval(playerTwoMove);
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+drawPlayersOnBoard();
+checkIfPlayerOneWins();
+checkIfPlayerTwoWins();
+}
 };
+
+
 
 
 
