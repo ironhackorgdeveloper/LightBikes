@@ -19,58 +19,61 @@ window.onload = function () {
   };
 
   // Constructor function for each of the two players.
-  var Player = function(id, playerColor, bike){
-    this.id = id
+  var Player = function(playerColor, bike){
     this.color = playerColor;
     this.bike = bike;
-    this.delta  = 15;
-    this.travelLog = [];
-    this.score = 0;
-    this.opponent = {};
-    this.direction = null;
-    this.enteredKeyCode = null;
-    this.updateScoreboard = function() {
-      $(this.id).text(this.score);
-    } 
-
-    this.isWithinBoundary =  function() {
-      return (this.bike.y > -1 && this.bike.x > -1) && (this.bike.y < 650 && this.bike.x < 950)
-    }
-    this.move =  function(bike, direction){
-    
-      if(this.isWithinBoundary()){
-        if (direction === 'UP') {
-          bike['y'] -= this.delta;
-        } else if (direction === 'DOWN') {
-          bike['y'] += this.delta;
-        } else if  (direction === 'LEFT') {
-          bike['x'] += this.delta;
-        } else if (direction === 'RIGHT') {
-          bike['x'] -= this.delta;
-        } 
-        this.draw();
+    this.moveUp   = function(){
+      if((this.bike.y > -1 && this.bike.x > -1) && (this.bike.y < 650 && this.bike.x < 950)){
+        this.bike.y -= 15;
+        this.draw(); 
       }
       else{
         window.clearInterval(playerOneMove, playerTwoMove); // Clear the interval for P1 when a border crash occurs.
         this.clear();
         borderCollision();
+        trackPlayerScore();
+        gameOver();
       }
-    }
-
-    this.moveUp   = function(){
-      this.move(this.bike, "UP")
     }; 
     this.moveDown = function(){
-      this.move(this.bike, "DOWN")
+      if((this.bike.y > -1 && this.bike.x > -1) && (this.bike.y < 650 && this.bike.x < 950)){
+        this.bike.y += 15;
+        this.draw(); 
+      }
+      else{
+        window.clearInterval(playerOneMove, playerTwoMove); // Clear the interval for P1 when a border crash occurs. 
+        this.clear();
+        borderCollision();
+        trackPlayerScore();
+        gameOver();      
+      }
     }; 
     this.moveRight= function(){
-      this.move(this.bike, "RIGHT")
+      if((this.bike.y > -1 && this.bike.x > -1) && (this.bike.y < 650 && this.bike.x < 950)){
+        this.bike.x -= 15;
+        this.draw(); 
+      }
+      else{
+        window.clearInterval(playerOneMove, playerTwoMove); // Clear the interval for P1 when a border crash occurs.
+        this.clear();
+        borderCollision();        
+        trackPlayerScore();
+        gameOver();
+      }
     };
     this.moveLeft = function(){
-      this.move(this.bike, "LEFT")
-    };
-
-     // Accepts movementLeft from the switch statements and then re-draws the player object.
+      if((this.bike.y > -1 && this.bike.x > -1) && (this.bike.y < 650 && this.bike.x < 950)){
+        this.bike.x += 15;
+        this.draw(); 
+      }
+      else{
+        window.clearInterval(playerOneMove, playerTwoMove); // Clear the interval for P1 when a border crash occurs.
+        this.clear();
+        borderCollision();        
+        trackPlayerScore();
+        gameOver();
+      }
+    }; // Accepts movementLeft from the switch statements and then re-draws the player object.
     this.draw = function(){
       ctx.fillStyle = this.color;
       ctx.fillRect(this.bike.x, this.bike.y, this.bike.width, this.bike.height);
@@ -78,177 +81,17 @@ window.onload = function () {
     this.clear = function() {
       ctx.clearRect(this.bike.x, this.bike.y, this.bike.width, this.bike.height)
     };
-
-    this.intervalCallback = function(enteredKeyCode, direction) {
-      let { x, y } = this.bike;
-      this.travelLog.push({ x, y})
-      this[direction]();
-      //collisionCheck();
-      this.enteredKeyCode = enteredKeyCode;
-      }
   };
 
-  var GameManager = function(playerOne, playerTwo) {
-    this.playerOne = playerOne;
-    this.playerTwo = playerTwo;
-
-    this.startGame = function() {
-      this.playerOne.draw();
-      this.playerTwo.draw();
-    }
-
-    this.alterScore = function(player) {
-      player.score += 1;
-      player.updateScoreboard();
-    }
-
-    this.isGameOver = function(){
-      let playerOneScore = this.playerOne.score;
-      let playerTwoScore = this.playerTwo.score;
-
-      return (playerOneScore >= 3 || playerTwoScore >= 3) 
-    }
-    this.announceWinner = function() {
-      let playerOneScore = this.playerOne.score;
-      let playerTwoScore = this.playerTwo.score;
-
-      if (playerOneScore > playerTwoScore) {
-        alert("Player One Wins")
-      } else {
-        alert("Player Two Wins")
-      }
-    }
-
-    this.switchHandler = function(eventKeyCode, enteredKeyCode, player, opponent, direction) {
-      if(player.enteredKeyCode === enteredKeyCode) {
-        window.clearInterval(player.interval); 
-        this.alterScore(opponent);
-      } else {
-        window.clearInterval(player.interval); 
-        this.playerOne.interval = setInterval(player.intervalCallback(eventKeyCode, direction), 300)
-        this.didPlayerCollide(player, opponent, direction)
-      }
-    }
-
-    this.didPlayerCollide = function(player, opponent, direction) {
-      let {x, y } = player.travelLog[player.travelLog.length - 1];
-      let playerX = x;
-      let playerY = y;
-
-      opponent.travelLog.map(function({x, y}) {
-        let opponentX = x;
-        let opponentY = y;
-
-          console.log("check", (playerX + 15), opponentX, direction, ["moveLeft", "moveRight"].includes(direction) )
-          if ((playerX + 15) === opponentX && ["moveLeft", "moveRight"].includes(direction)) {
-            alert("Collided")
-          }
-          
-          if ((playerY - 15) === opponentY && ["moveUp", "moveDown"].includes(direction)) {
-            alert("Collided!")
-          }
-      })
-    }
-
-    this.onKeyDownHandler = function(event) {
-
-      // console.log('p1', this.playerOne.travelLog)
-      // console.log('p2', this.playerTwo.travelLog)
-      if ([87,83,65,68].includes(event.keyCode)) {
-        switch(event.keyCode) {
-          case 87: {
-            this.switchHandler(event.keyCode, 83, this.playerOne, this.playerTwo, "moveUp")
-            break;
-          }
-          case 83: {
-            this.switchHandler(event.keyCode, 87, this.playerOne, this.playerTwo, "moveDown")
-            break;
-          }
-          case 65: {
-            this.switchHandler(event.keyCode, 68, this.playerOne, this.playerTwo, "moveRight")
-            break;
-          }
-          case 68: {
-            this.switchHandler(event.keyCode, 65, this.playerOne, this.playerTwo, "moveLeft")
-            break;
-          }
-        }    
-      }
-
-      if ([75,73,74,76].includes(event.keyCode)) {
-        switch(event.keyCode) {
-          case 73: {
-            this.switchHandler(event.keyCode, 75, this.playerTwo, this.playerOne, "moveUp")
-            break;
-          }
-          case 75: {
-            this.switchHandler(event.keyCode, 73, this.playerTwo, this.playerOne, "moveDown")
-            break;
-          }
-          case 74: {
-            this.switchHandler(event.keyCode, 76, this.playerTwo, this.playerOne, "moveRight")
-            break;
-          }
-          case 76: {
-            this.switchHandler(event.keyCode, 74, this.playerTwo, this.playerOne, "moveLeft")
-            break;
-          }
-        }
-
-      }
-
-
-
-      if (this.isGameOver()) {
-        this.announceWinner()
-      }
-
-    }
-  }
-
-
-  // Creates each of the player objects from the Player constructor.
-  var playerOne = new Player('#player-1', 'red', new LightBike(425, 300, 15, 15));
-  var playerTwo = new Player('#player-2', 'blue', new LightBike(500, 300, 15, 15));
-
-  let gameManager = new GameManager(playerOne, playerTwo);
-
- document.onkeydown = function(e) {
-   gameManager.onKeyDownHandler(e)
- }
-
- 
-
- 
-  
-  // function collisionCheck() {
-  //   console.log("Collision check")
-  //   travelLog.forEach(function (eachCoordinate){
-  //     console.log(eachCoordinate.x, eachCoordinate.y)
-     
-  //     if(playerOne.bike.x === eachCoordinate.x && playerOne.bike.y === eachCoordinate.y){
-  //       console.log("COLLIDED!")
-  //     }
-  //   });
-  // };
-  
-  // travelLog.forEach(function(coordinate, index){
-  //   if(index !==0){
-  //     if(coordinate.x === eachCoordinate.x && coordinate.y === eachCoordinate.y){
-  //       alert("hello!")
-  //     }
+  // function borderCrash() { // FOR REFACTORING
+  //   if((this.bike.y < 0 || this.bike.x < 0 || this.bike.y > 650 || this.bike.x > 950)){
+  //     console.log(this.bike.y, this.bike.x);
+  //     window.clearInterval(playerOneMove); // Clear the interval when a crash occurs. 
+  //     window.clearInterval(playerTwoMove); // Clear the interval when a crash occurs. 
+  //     this.clear();
+  //     trackPlayerScore();
+  //     gameOver();
   //   }
-
-  // });
-
-
-  // for(i = 0; i < travelLog.length; i++){
-    //   console.log("collision for loop")
-    //   if(playerOne.bike.x === travelLog.playerX[i] && playerOne.bikeY === travelLog.playerY[i]){
-    //     console.log("collision if statement")
-    //     alert("Game Over - Collision!")
-    //   }
-    // }
   // };
 
   function countdown(){ // This function counts down from 5 using JQuery and updates the seconds displayed on the screen.
@@ -261,13 +104,259 @@ window.onload = function () {
        if(threeSeconds == 0){
          $('.col-6 span' ).remove();
          $('.col-6 #timer' ).text("GO!");
-         gameManager.startGame();
+         drawPlayersOnBoard();
       }
     },1000); // = One Second
   }
+  
+  function borderCollision(){
+    alert("Player hit a border!")
+  };
 
+  function playerCollision(){
+    alert("One player hit another.")
+  }
   // Starts the countdown by calling the countdown function.
   countdown();
+
+  // Creates each of the player objects from the Player constructor.
+  var playerOne = new Player('red', new LightBike(425, 300, 15, 15));
+  var playerTwo = new Player('blue', new LightBike(500, 300, 15, 15));
+
+  function drawPlayersOnBoard(){ // Draws the two players on the canvas.
+    playerOne.draw();
+    playerTwo.draw();
+  };
+
+  var travelLog = [];
+  console.log(playerOne.bike.x);
+
+  
+
+  // Accepts key presses from the DOM and associates them with player movement.
+  document.onkeydown = function (e) {
+    switch (e.keyCode) {
+      // Key Event Input - (Player 1: WASD)
+      case 87:
+        if(playerOneDirection === 83){ // Clear the interval when a crash occurs. 
+          window.clearInterval(playerOneMove); 
+          this.clear();
+          trackPlayerScore();
+          selfCrashP1();
+        }
+        else{
+          window.clearInterval(playerOneMove); // Clears the interval when direction is changed.
+          playerOneMove = setInterval(function() {
+          travelLog.push({x: playerOne.bike.x, y: playerOne.bike.y})
+          playerOne.moveUp();
+          playerOneDirection = 87;
+          collisionCheck();
+          console.log('did this run?');             
+          },300);
+        };
+      break;
+
+      case 83:
+        if(playerOneDirection === 87){ // Clear the interval when a self crash occurs. 
+          window.clearInterval(playerOneMove); 
+          this.clear();
+          trackPlayerScore();
+          selfCrashP1();
+        }
+        else {
+          window.clearInterval(playerOneMove); // Clears the interval when direction is changed.
+          playerOneMove = setInterval(function() {
+          travelLog.push({x: playerOne.bike.x, y: playerOne.bike.y})        
+          playerOne.moveDown();     
+          playerOneDirection = 83;
+          collisionCheck();
+          console.log('did this run?');             
+          },300);
+        };
+      break;
+
+      case 68:
+        if(playerOneDirection === 65){ // Clear the interval when a self crash occurs. 
+          window.clearInterval(playerOneMove); 
+          this.clear();
+          trackPlayerScore();
+          selfCrashP1();
+        }
+        else{
+          window.clearInterval(playerOneMove); // Clears the interval when direction is changed.
+          playerOneMove = setInterval(function() {
+          travelLog.push({x: playerOne.bike.x, y: playerOne.bike.y})        
+          playerOne.moveLeft();       
+          playerOneDirection = 68;
+          collisionCheck();
+          console.log('did this run?');   
+          },300);
+        }
+      break;
+
+      case 65:
+        if(playerOneDirection === 68){ // Clear the interval when a self crash occurs. 
+          window.clearInterval(playerOneMove); 
+          this.clear();
+          trackPlayerScore();
+          selfCrashP1();
+        }
+        else{
+          window.clearInterval(playerOneMove); // Clears the interval when direction is changed.
+          playerOneMove = setInterval(function() {
+          travelLog.push({x: playerOne.bike.x, y: playerOne.bike.y})        
+          playerOne.moveRight();
+          playerOneDirection = 65;
+          collisionCheck();
+          console.log('did this run?');             
+          },300);
+        }
+      break;
+
+      // Key Event Input - (Player 2: IJKL)
+      case 73:
+        if(playerTwoDirection === 75){
+          window.clearInterval(playerTwoMove); 
+          this.clear();
+          trackPlayerScore();
+          selfCrashP2();
+        }
+        else{
+          window.clearInterval(playerTwoMove);
+          playerTwoMove = setInterval(function() {
+          travelLog.push({x: playerTwo.bike.x, y: playerTwo.bike.y})
+          playerTwo.moveUp();
+          playerTwoDirection = 73;
+          collisionCheck();       
+          console.log('did this run?');   
+          },300);
+        }
+      break;
+
+      case 75:
+        if(playerTwoDirection === 73){
+          window.clearInterval(playerTwoMove); 
+          this.clear();
+          trackPlayerScore();
+          selfCrashP2();
+        }
+        else{
+          window.clearInterval(playerTwoMove);
+          playerTwoMove = setInterval(function() {
+          travelLog.push({x: playerTwo.bike.x, y: playerTwo.bike.y})
+          playerTwo.moveDown();
+          playerTwoDirection = 75;
+          collisionCheck();
+          console.log('did this run?');             
+          },300);
+        }
+      break;
+
+      case 76:
+        if(playerTwoDirection === 74){
+          window.clearInterval(playerTwoMove); 
+          this.clear();
+          trackPlayerScore();
+          selfCrashP2();
+        }
+        else{
+          window.clearInterval(playerTwoMove);
+          playerTwoMove = setInterval(function() {
+          travelLog.push({x: playerTwo.bike.x, y: playerTwo.bike.y})
+          playerTwo.moveLeft();
+          playerTwoDirection = 76;
+          collisionCheck();      
+          console.log('did this run?');                 
+          },300);
+        }
+      break;
+  
+      case 74:
+        if(playerTwoDirection === 76){
+          window.clearInterval(playerTwoMove); 
+          this.clear();
+          trackPlayerScore();
+          selfCrashP2();
+        }
+        else{
+          window.clearInterval(playerTwoMove);
+          playerTwoMove = setInterval(function() {
+          travelLog.push({x: playerTwo.bike.x, y: playerTwo.bike.y})
+          playerTwo.moveRight();
+          },300);
+          playerTwoDirection = 74;
+          collisionCheck();        
+          console.log('did this run?');               
+        }
+      break;
+
+      default: console.log("You're moving!");
+    }
+  };
+
+    function collisionCheck() {
+      console.log(travelLog);
+    travelLog.forEach(function (eachCoordinate){
+      if(playerOne.bike.x === eachCoordinate.x && playerOne.bike.y === eachCoordinate.y ||
+         playerTwo.bike.x === eachCoordinate.x && playerTwo.bike.y === eachCoordinate.y){
+        setTimeout(function() {
+
+          alert("COLLIDED!")
+        }, 1);
+
+        window.location.reload();
+      }
+    });
+  };
+
+  function trackPlayerScore(){
+    playerOneScore = $('#player-1-score').text();
+    playerTwoScore = $('#player-2-score').text();
+
+    playerOneScore = parseInt(playerOneScore,10);
+    playerTwoScore = parseInt(playerTwoScore,10);
+  }
+
+  function gameOver(){
+    countdown();
+  }
+
+  function checkIfPlayerOneWins(){ // Should be combined into one CHECK IF PLAYER WON FUNCTION
+    if(playerOneScore === 3){
+      alert("Player One Wins!");
+      playerTwoScore = 0;
+      playerOneScore = 0; 
+      $('#player-1-score').text(playerOneScore);
+      $('#player-2-score').text(playerTwoScore);
+      gameOver();
+    }
+  }
+
+  function checkIfPlayerTwoWins(){ // Should be combined into one CHECK IF PLAYER WON FUNCTION
+    if(playerTwoScore === 3){
+      alert("Player Two Wins!");
+      playerTwoScore = 0;
+      playerOneScore = 0; 
+      $('#player-1-score').text(playerOneScore);
+      $('#player-2-score').text(playerTwoScore);     
+    }
+  }
+  
+  function selfCrashP1(){ // Should be combined into one SELF CRASH FUNCTION
+    alert("Player 1 crashed into itslef!")
+    playerTwoScore++;
+    $('#player-2-score').text(playerTwoScore);
+    checkIfPlayerOneWins();    
+    checkIfPlayerTwoWins();    
+  }
+
+  function selfCrashP2(){ // Should be combined into one SELF CRASH FUNCTION
+    alert("Player 2 crashed into itslef!")
+    playerOneScore++;
+    $('#player-1-score').text(playerOneScore);
+    checkIfPlayerOneWins();    
+    checkIfPlayerTwoWins();    
+  }
 };
 
 
