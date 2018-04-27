@@ -21,7 +21,7 @@ The rules of the game are simple:
 
 ## Challenges
 
-The concept was far more complicated than it looked. Having more than one player using the same keyboard and tacking the movement of each players at the same time were some of the first challenges I encountered. Once I was able to figure that out, I worked on having each player leave behind their own colored trail. The one piece that I severely underestimated was how I was going to implement collision detection for the game. Not only for each of the players and the trails thy leave behind, but also for the map borders and having those collisions update the scores of each player accordingly. 
+The concept was far more complicated than it looked. Having more than one player using the same keyboard and tacking the movement of each player at the same time were some of the first challenges I encountered. Once I was able to figure that out, I worked on having each player leave behind their own colored trail. The one piece that I severely underestimated was how I was going to implement collision detection for the game. Not only for each of the players and the trails they leave behind, but also for the map borders and having those collisions update the scores of each player accordingly. 
 
 I learned a lot while putting together this seemingly simple game and look forward to the next project that I'll be putting together in the upcoming weeks. 
 
