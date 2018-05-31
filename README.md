@@ -1,4 +1,4 @@
-# Light Bikes - Developed in one week at IronHack Miami - April 2018
+![Ironhack Logo](https://i.imgur.com/1QgrNNw.png)
 
 Developed by [Ryan Craig Martin](https://github.com/ryanmartin)
 
@@ -8,13 +8,17 @@ It's a clone of a game called Tron which was a coin-operated arcade game develop
 
 **The rules of the game are simple:**
 
-- Two players can play at the same time using the same keyboard.
+Light Bikes was the first project that I put together as part of my portfolio during the thrid week of my experience at IronHack Miami. The goal was to challenge ourselves to put together a game over the course of a week using what we had learned over the course of the first two weeks of our Full Stack Web Development Cohort. It's a game I built using *JavaScript*, *JQuery*, *HTML5* & *CSS3* and was inspired Tron which was a coin-operated arcade game developed by Bally Midway in 1982. The original game consisted of four minigames inspired by the Disney motion picture Tron which was released that same year. One of the four games included was a new take on the classic game Snake in which you played a character on a Light Bike, a futuristic motorcycle showcased in the movie.
 
 - Player one uses the WASD keys and Player two uses the IJKL keys in order to move their LightBike around the map. 
 
 - The Light Bikes race across the game grid, and as they move, they leave a trail of light behind them which generates a maze of walls the other player must avoid.
 
-- Players use these obstacles to box in and destroy their opponent while trying to avoid hitting any walls put up by the other player.
+- Players use these obstacles to box in and destroy their opponent while trying to avoid hitting any walls put up by the other player and the borders of the map.
+
+- Two players can play at the same time using the same keyboard.
+
+-  Player one uses the WASD keys and Player two uses the IJKL keys in order to move their LightBike around the map. 
 
 ## Challenges
 
