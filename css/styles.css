@@ -366,9 +366,6 @@ a:link{
   justify-content: space-around;
 }
 
-#map{
-
-}
 #play-button{
   padding: 5px;
   width: 330px;
@@ -384,12 +381,12 @@ a:link{
 .score-container{
     width: 956px;
     border: 3px solid black;
-    margin-top: 83px;
+    margin-top: 82px;
 }
 
-
-
-
+.game-title{
+  margin-left: 42%;
+}
 
 #canvas{
   border: solid 3px black;
