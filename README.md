@@ -1,5 +1,7 @@
 ![Ironhack Logo](https://i.imgur.com/1QgrNNw.png)
 
+# Light Bikes
+
 Developed by [Ryan Craig Martin](https://github.com/ryanmartin)
 
 Light Bikes was the first project that I put together as part of my portfolio during my third week at IronHack Miami. The goal was to challenge ourselves to put together a game in one week using what we had learned over the course of the first two weeks of our Full Stack Web Development Cohort.
