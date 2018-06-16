@@ -42,7 +42,7 @@ I learned a lot while putting together this seemingly simple game and look forwa
 
 ### Deployment
 
-- [Live Demo](https://ryancraigmartin.github.io/light-bikes/)
+- [Live Demo](https://ryancraigmartin.github.io/LightBikes/)
 
 ## License
 
